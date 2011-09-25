@@ -1,0 +1,33 @@
+table.sortable
+  { margin-left: auto;
+    margin-right: auto;
+    __border: 1px solid #eee;
+    background-color: #FFFFFF;
+    border-collapse: collapse; 
+    font-size: 80%;
+    color: #333;
+    }
+table.sortable td, table.sortable th
+  { __border: 1px solid #000000;
+    padding: 3px;
+    }
+
+table.sortable th
+  { font-size: 100%;
+    font-weight: 600;
+    color: #333;
+    background-color: #eee;
+	text-align:left;
+	padding:4px 3px 4px 3px;
+    }
+
+table.sortable th.sort_header
+  { text-decoration: underline;
+    cursor: pointer;
+    }
+
+tr
+  { border-bottom:1px solid #eee }
+
+tr.over td
+  { background-color:#FFFFdd; }
