@@ -4,33 +4,9 @@
     <!--<meta charset="utf-8">-->
     <title>Sprinter</title>
 	<link rel="stylesheet" href="assets/css/blue/style.css" type="text/css" media="print, projection, screen" />
+	<link rel="stylesheet" href="assets/css/style.css" type="text/css" media="print, projection, screen" />
 
-    <style type="text/css">
-        * { margin: 0; padding: 0; }
-        body { background-color: #EEE; font-family: sans-serif; font-size: 16px; line-height: 20px; margin: 40px; }
-        #wrapper { padding: 30px; background: #fff; color: #333; margin: 0 auto; width: 900px; }
-        a { color: #36428D; }
-        h1 { color: #000; font-size: 32px; padding: 0 0 25px; line-height: 1em; }
-        .intro { font-size: 22px; line-height: 30px; font-family: georgia, serif; color: #555; padding: 29px 0 20px; border-top: 1px solid #CCC; }
-        h2 { margin: 30px 0 15px; padding: 0 0 10px; font-size: 18px; border-bottom: 1px dashed #ccc; }
-        h2.first { margin: 10px 0 15px; }
-        p { margin: 0 0 15px; line-height: 22px;}
-        a { color: #666; }
-        pre { border-left: 1px solid #ddd; line-height:20px; margin:20px; padding-left:1em; font-size: 16px; }
-        pre, code { color:#137F80; font-family: Courier, monospace; }
-        ul { margin: 15px 30px; }
-        li { line-height: 24px;}
-        .footer { color: #777; font-size: 12px; margin: 40px 0 0 0; }
-        td { font-size: 11px }
-        table { width:900px }
-        .subject { font-size: 13px; color: #221111; font-weight: bold;  }
-		.row{cursor:pointer}
-        .id { font-family: monospace; font-size: 14px; }
-        table.infobox { width:400px; background-color: #ffffdd; padding: 10px; border: 1px solid black }
-        _#hide { float: right; background-color: #ddeeff; cursor:row-resize; margin: 0px 5px; padding: 5px; border: 1px solid black }
-        .breaker { float: none; }
-		.hidden{display:none}
-		.due_today{background:pink}
+       
 	
     </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
@@ -55,12 +31,12 @@
 		$(".sortable th").addClass("sort_header");
 		
 		//  Adds "over" class to rows on mouseover
-	    $(".sortable tr").mouseover(function(){
+	    $(".row").mouseover(function(){
 	      $(this).addClass("over");
 	    });
 
 	    //  Removes "over" class from rows on mouseout
-	    $(".sortable tr").mouseout(function(){
+	    $(".row").mouseout(function(){
 	      $(this).removeClass("over");
 	    });
 	 
@@ -117,7 +93,9 @@
 			<th nowrap><strong>Due date</strong></th>
             <th><strong>Estimated</strong></th>
             <th><strong>Done</strong></th>
+			<th>Updated</th>
             <th><strong>Status</strong></th>
+
         </tr></thead>
         <?php foreach($issues as $issue): ?>
 		<?php
@@ -129,7 +107,16 @@
             <td valign='top' nowrap><?php echo $issue['assigned_to'] ?></td>
             <td valign='top'><?php if(isset($issue["due_date"]))echo $issue["due_date"];?></td>
 			<td valign='top'><?php echo $issue['estimated_hours'] ?></td>
-            <td valign='top' ><?php echo $issue['done_ratio'] ?></td>
+            <td valign='top'>
+				<table class="progress" cellpadding=0 cellspacing=0>
+					<tr>
+						<td class="closed" width="<?php echo $issue['done_ratio'] ?>%"></td></td>
+						<td class="remaining" width="<?php echo 100-$issue['done_ratio'] ?>"</td></td>
+					</tr>
+				</table>
+				
+			<!--<?php echo $issue['done_ratio'] ?></td>-->
+			<td nowrap><?php echo $issue['updated_on']?></td>
             <td valign='top' nowrap><?php echo $issue['status']['name'] ?></td>
         </tr>
         <?php endforeach ?>

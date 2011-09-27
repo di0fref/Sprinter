@@ -1,0 +1,146 @@
+* {
+margin:0;
+padding:0;
+}
+
+body {
+background-color:#EEE;
+font-family:sans-serif;
+font-size:16px;
+line-height:20px;
+margin:40px;
+}
+
+#wrapper {
+background:#fff;
+color:#333;
+width:1100px;
+margin:0 auto;
+padding:30px;
+}
+
+a {
+color:#666;
+}
+
+h1 {
+color:#000;
+font-size:32px;
+line-height:1em;
+padding:0 0 25px;
+}
+
+.intro {
+font-size:22px;
+line-height:30px;
+font-family:georgia, serif;
+color:#555;
+border-top:1px solid #CCC;
+padding:29px 0 20px;
+}
+
+h2 {
+font-size:18px;
+border-bottom:1px dashed #ccc;
+margin:30px 0 15px;
+padding:0 0 10px;
+}
+
+h2.first {
+margin:10px 0 15px;
+}
+
+p {
+line-height:22px;
+margin:0 0 15px;
+}
+
+pre {
+border-left:1px solid #ddd;
+line-height:20px;
+padding-left:1em;
+font-size:16px;
+margin:20px;
+}
+
+pre,code {
+color:#137F80;
+font-family:Courier, monospace;
+}
+
+ul {
+margin:15px 30px;
+}
+
+li {
+line-height:24px;
+}
+
+.footer {
+color:#777;
+font-size:12px;
+margin:40px 0 0;
+}
+
+td {
+font-size:11px;
+}
+
+#mytable {
+width:1100px;
+}
+
+.subject {
+font-size:13px;
+color:#211;
+font-weight:700;
+}
+
+.row {
+cursor:pointer;
+}
+
+.id {
+font-family:monospace;
+font-size:14px;
+}
+
+table.infobox {
+width:400px;
+background-color:#ffd;
+border:1px solid #000;
+padding:10px;
+}
+
+__#hide {
+float:right;
+background-color:#def;
+cursor:row-resize;
+border:1px solid #000;
+margin:0 5px;
+padding:5px;
+}
+
+.breaker {
+float:none;
+}
+
+.hidden {
+display:none;
+}
+
+.due_today {
+background:#FFC0CB;
+}
+
+table.progress {
+width:80px;
+border:1px solid #eee;
+height:17px;
+}
+table.progress td{
+	padding:0;
+}
+.closed {
+background:#BAE0BA none repeat scroll 0;
+}

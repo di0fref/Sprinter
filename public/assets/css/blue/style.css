@@ -29,5 +29,5 @@ table.sortable th.sort_header
 tr
   { border-bottom:1px solid #eee }
 
-tr.over td
+tr.over
   { background-color:#FFFFdd; }
