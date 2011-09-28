@@ -6,50 +6,11 @@
 	<link rel="stylesheet" href="assets/css/blue/style.css" type="text/css" media="print, projection, screen" />
 	<link rel="stylesheet" href="assets/css/style.css" type="text/css" media="print, projection, screen" />
 
-       
-	
-    </style>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
     <script src="assets/js/jquery.tablesorter.js"></script>
+    <script src="assets/js/jquery.tooltip.js"></script>
+    <script src="assets/js/welcome.js"></script>
 
-    <script type="text/javascript">
-    $(function() {
-        $('.description').toggle();
-        
-        $('#hide').click(function() {
-            $('.description').slideToggle();
-        });
-		try{
-			$("#mytable").tablesorter(
-				{ 
-       				sortList: [[4,1]],
-					widgets: ["zebra"]
-				}
-			); 
-		}catch(e){}
-		//  Adds sort_header class to ths
-		$(".sortable th").addClass("sort_header");
-		
-		//  Adds "over" class to rows on mouseover
-	    $(".row").mouseover(function(){
-	      $(this).addClass("over");
-	    });
-
-	    //  Removes "over" class from rows on mouseout
-	    $(".row").mouseout(function(){
-	      $(this).removeClass("over");
-	    });
-	 
-		$(".row").click(function(){
-			$("#hidden_"+this.id).toggle();
-		});
-		
-		$("#versions").change(function(){
-			window.location = "index.php?version="+this.value;
-		});
-        
-    });
-    </script>
 </head>
 <body>
     <div id="wrapper">
@@ -126,5 +87,6 @@
             <a href="http://fuelphp.com">Fuel PHP</a> is released under the MIT license.<br />Page rendered in {exec_time}s using {mem_usage}mb of memory.
         </p>
     </div>
+	<div id="tooltip" style="display:none"></div>
 </body>
 </html>

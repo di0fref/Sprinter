@@ -11,7 +11,7 @@
  */
 
 require_once '../fuel/app/classes/model/issues.php';
-
+date_default_timezone_set('Europe/Stockholm');
 class Controller_Welcome extends Controller
 {
 
@@ -23,6 +23,7 @@ class Controller_Welcome extends Controller
      */
     public function action_index()
     {
+
         $data = array();
         $version = $this->getVersion();
         $issueModel = new Issues($version);
