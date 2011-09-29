@@ -50,7 +50,6 @@ class Controller_Welcome extends Controller
                 $count = count($item);
                 foreach ($item as $issue)
                 {
-					if (!in_array($issue['status']['name'], $this->ignore_statues)){
 						if($issue['done_ratio'] > 0)
 							$issue["updated_on"] = date("Y-m-d H:i", strtotime($issue["updated_on"] ));
 						else
@@ -90,12 +89,11 @@ class Controller_Welcome extends Controller
 	                    $remaining_time = (1 - ($issue['done_ratio'] / 100)) * $issue['estimated_hours'];
 
 	                    $issue['remaining_time'] = $remaining_time;
-
-	                    $issues[] = $issue;
+						if (!in_array($issue['status']['name'], $this->ignore_statues))
+	                    	$issues[] = $issue;
           				$remaining += $remaining_time;
 	                    $estimated_hours = $estimated_hours + $issue['estimated_hours'];
 	                }
-				}
             }
         }
 

@@ -107,3 +107,4 @@ Error - 2011-09-29 23:00:57 --> 8 - Undefined index: due in /Users/fredrik/Sites
 Error - 2011-09-29 21:23:19 --> Parsing Error - syntax error, unexpected ';' in /Users/fredrik/Sites/sprinter/fuel/app/classes/controller/welcome.php on line 84
 Error - 2011-09-29 21:23:28 --> Parsing Error - syntax error, unexpected T_VARIABLE, expecting T_FUNCTION in /Users/fredrik/Sites/sprinter/fuel/app/classes/controller/welcome.php on line 108
 Error - 2011-09-29 21:25:47 --> Parsing Error - syntax error, unexpected T_IS_EQUAL in /Users/fredrik/Sites/sprinter/fuel/app/classes/controller/welcome.php on line 85
+Error - 2011-09-29 21:54:38 --> Parsing Error - syntax error, unexpected T_PUBLIC in /Users/fredrik/Sites/sprinter/fuel/app/classes/controller/welcome.php on line 135
