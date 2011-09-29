@@ -45,7 +45,10 @@ border-bottom:1px dashed #ccc;
 margin:30px 0 15px;
 padding:0 0 10px;
 }
-
+h3 {
+font-size:14px;
+margin:10px 0 10px 0px;
+}
 h2.first {
 margin:10px 0 15px;
 }
@@ -130,9 +133,21 @@ display:none;
 }
 
 .due_today {
-background:#FFC0CB;
+	background:pink;
+}
+.due_tomorrow{
+	background:lightblue;
+}
+.overdue{
+	background:#FF8585;
 }
 
+#legend td{
+	padding:3px;
+}
+#legend td.legend_text{
+	width:40px;
+}
 table.progress {
 width:80px;
 border:1px solid #eee;

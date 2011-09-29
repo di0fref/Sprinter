@@ -15,12 +15,19 @@ date_default_timezone_set('Europe/Stockholm');
 class Controller_Welcome extends Controller
 {
 
+    protected $ignore_statues = array(
+        'Waiting for acceptance',
+        'Waiting final acceptance',
+        'Closed',
+        'Fixed - waiting to be deployed',
+    );
     /**
      * The index action.
      *
      * @access  public
      * @return  void
      */
+
     public function action_index()
     {
 
@@ -43,54 +50,52 @@ class Controller_Welcome extends Controller
                 $count = count($item);
                 foreach ($item as $issue)
                 {
+					if (!in_array($issue['status']['name'], $this->ignore_statues)){
+						if($issue['done_ratio'] > 0)
+							$issue["updated_on"] = date("Y-m-d H:i", strtotime($issue["updated_on"] ));
+						else
+							$issue["updated_on"] = "";
+
+	                    if (empty($issue['assigned_to']['name'])) {
+	                        $issue['assigned_to'] = '-';
+	                    } else {
+	                        $issue['assigned_to'] = $issue['assigned_to']['name'];
+	                    }
+
+	                    if (empty($issue['description'])) {
+	                        $issue['description'] = '';
+	                    } else {
+	                        $issue['description'] = str_replace("\n", '<br />', $issue['description']);
+	                    }
+
+						$issue['due'] = "no_due";
 					
-					if($issue['done_ratio'] > 0)
-						$issue["updated_on"] = date("Y-m-d H:i", strtotime($issue["updated_on"] ));
-					else
-						$issue["updated_on"] = "";
+						if (isset($issue['due_date'])){
 
-                    if (empty($issue['assigned_to']['name'])) {
-                        $issue['assigned_to'] = '-';
-                    } else {
-                        $issue['assigned_to'] = $issue['assigned_to']['name'];
-                    }
+							if($issue['due_date'] == date("Y/m/d")){
+								$issue["due"] = "due_today";
+							}
+							if($issue['due_date'] == date("Y/m/d", strtotime(date("Y/m/d") . " +1 day"))){
+								$issue["due"] = "due_tomorrow";
+							}
+							if($issue['due_date'] < date("Y/m/d", strtotime(date("Y/m/d")))){
+								$issue["due"] = "overdue";
+							}
 
-                    if (empty($issue['description'])) {
-                        $issue['description'] = '';
-                    } else {
-                        $issue['description'] = str_replace("\n", '<br />', $issue['description']);
-                    }
+						}
 
-                    if (isset($issue['due_date']) and $issue['due_date'] == date("Y/m/d")) {
-                        $issue["due_today"] = "due_today";
-                    }
-                    else {
-                        $issue["due_today"] = "not_today";
-                        $issue['due_date'] = "-";
-                    }
+	                    if (!array_key_exists('estimated_hours', $issue))
+	                        $issue['estimated_hours'] = 0;
 
-                    if (!array_key_exists('estimated_hours', $issue))
-                        $issue['estimated_hours'] = 0;
+	                    $remaining_time = (1 - ($issue['done_ratio'] / 100)) * $issue['estimated_hours'];
 
-                    $remaining_time = (1 - ($issue['done_ratio'] / 100)) * $issue['estimated_hours'];
+	                    $issue['remaining_time'] = $remaining_time;
 
-                    $issue['remaining_time'] = $remaining_time;
-
-                    $ignore_statues = array(
-                        'Waiting for acceptance',
-                        'Waiting final acceptance',
-                        'Closed',
-                        'Fixed - waiting to be deployed',
-                    );
-
-                    if (!in_array($issue['status']['name'], $ignore_statues))
-                        $issues[] = $issue;
-
-
-                    $remaining += $remaining_time;
-                    $estimated_hours = $estimated_hours + $issue['estimated_hours'];
-                }
-
+	                    $issues[] = $issue;
+          				$remaining += $remaining_time;
+	                    $estimated_hours = $estimated_hours + $issue['estimated_hours'];
+	                }
+				}
             }
         }
 

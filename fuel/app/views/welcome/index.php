@@ -35,7 +35,16 @@
         </table>
         
 		<table cellspacing=5 border=0>
-			<tr><td align="right" width="100%">Target Version:</td>
+			<tr>
+				<td><h3>Legend</h3>
+				<table id="legend" border=0>
+					<tr>
+						<td class="due_today legend_color" nowrap>Due today</td>
+						<td class="due_tomorrow legend_color" nowrap>Due tomorrow</td>
+						<td class="overdue legend_color" nowrap>Overdue</td>
+					</tr>
+				</table></td>
+				<td align="right" width="100%">Target Version:</td>
 			<td align="right"><select name="versions" id="versions"><option> - </option>
 				<?php foreach($versions as $key => $v){
 					if($key == $version) $selected = "selected"; else $selected = "";
@@ -45,7 +54,7 @@
 		</table>
 
         <h2>Issues (<?php echo $current_target_version;?>)</h2>
-        
+
         <table id="mytable" class="sortable tablesorter" cellspacing=0 cellpadding=0 border=0>
         <thead><tr>
             <th><strong>Id</strong></th>
@@ -59,12 +68,10 @@
 
         </tr></thead>
         <?php foreach($issues as $issue): ?>
-		<?php
 
-		?>
-        <tr class='<?php echo $issue["due_today"];?> row' id="<?php echo $issue['id'] ?>">
-            <td class='id' valign="top"><a target='_blank' href="https://redmine.redpill-linpro.com/issues/<?php echo $issue['id'] ?>"><?php echo $issue['id'] ?></a></td>
-            <td valign='top'><span class="subject"><?php echo $issue['subject'] ?></span><p class="hidden" id='<?php echo "hidden_".$issue["id"];?>'><?php echo "Author: ".$issue["author"]["name"]?><br><br><?php echo html_entity_decode($issue["description"])?></p></td>
+        <tr class='<?php echo $issue["due"];?> row' id="<?php echo $issue['id'] ?>">
+            <td class='id' valign="top"> <a target='_blank' href="https://redmine.redpill-linpro.com/issues/<?php echo $issue['id'] ?>"><?php echo $issue['id'] ?></a></td>
+            <td valign='top'><span class="subject"><?php echo $issue['subject'] ?></span> <p class="hidden" id='<?php echo "hidden_".$issue["id"];?>'><?php echo "Author: ".$issue["author"]["name"]?><br><br><?php echo html_entity_decode($issue["description"])?></p></td>
             <td valign='top' nowrap><?php echo $issue['assigned_to'] ?></td>
             <td valign='top'><?php if(isset($issue["due_date"]))echo $issue["due_date"];?></td>
 			<td valign='top'><?php echo $issue['estimated_hours'] ?></td>
