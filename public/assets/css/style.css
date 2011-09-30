@@ -135,9 +135,11 @@ display:none;
 .due_today {
 	background:pink;
 }
+/*
 .due_tomorrow{
 	background:lightblue;
-}
+}*/
+
 .overdue{
 	background:#FF8585;
 }

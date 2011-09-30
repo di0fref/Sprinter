@@ -40,7 +40,7 @@
 				<table id="legend" border=0>
 					<tr>
 						<td class="due_today legend_color" nowrap>Due today</td>
-						<td class="due_tomorrow legend_color" nowrap>Due tomorrow</td>
+						<!--<td class="due_tomorrow legend_color" nowrap>Due tomorrow</td>-->
 						<td class="overdue legend_color" nowrap>Overdue</td>
 					</tr>
 				</table></td>
