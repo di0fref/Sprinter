@@ -51,6 +51,9 @@
 					echo "<option value='$key' $selected>$v</option>";
 				}?>
 			</select></td></tr>
+			<tr>
+				<td colspan="3" align="right" valign="top">Show Accepted: <input type="checkbox" id="status_accept_check" name="status_accept" /></td>
+			</tr>
 		</table>
 
         <h2>Issues (<?php echo $current_target_version;?>)</h2>
@@ -67,9 +70,14 @@
             <th><strong>Status</strong></th>
 
         </tr></thead>
-        <?php foreach($issues as $issue): ?>
+        <?php foreach($issues as $issue): 
+        
+			$status_class = "";
+			if($issue['status']['name'] == "Waiting for acceptance")
+				$status_class = "status_accept";?>
 
-        <tr class='<?php echo $issue["due"];?> row' id="<?php echo $issue['id'] ?>">
+
+        <tr class='<?php echo $issue["due"] . " ". $status_class;?> row' id="<?php echo $issue['id'] ?>">
             <td class='id' valign="top"> <a target='_blank' href="https://redmine.redpill-linpro.com/issues/<?php echo $issue['id'] ?>"><?php echo $issue['id'] ?></a></td>
             <td valign='top'><span class="subject"><?php echo $issue['subject'] ?></span> <p class="hidden" id='<?php echo "hidden_".$issue["id"];?>'><?php echo "Author: ".$issue["author"]["name"]?><br><br><?php echo html_entity_decode($issue["description"])?></p></td>
             <td valign='top' nowrap><?php echo $issue['assigned_to'] ?></td>

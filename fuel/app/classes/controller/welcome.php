@@ -16,7 +16,7 @@ class Controller_Welcome extends Controller
 {
 
     protected $ignore_statues = array(
-        'Waiting for acceptance',
+        //'Waiting for acceptance',
         'Waiting final acceptance',
         'Closed',
         'Fixed - waiting to be deployed',

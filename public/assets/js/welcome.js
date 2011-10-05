@@ -1,4 +1,14 @@
 $(function() {
+
+	$("#status_accept_check").click(function(){
+		if($(this).attr("checked")){
+			$(".status_accept").show();
+		}
+		else{
+			$(".status_accept").hide();
+		}
+	});
+
        $('.description').toggle();
        
        $('#hide').click(function() {
