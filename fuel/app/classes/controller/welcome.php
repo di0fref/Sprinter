@@ -17,9 +17,19 @@ class Controller_Welcome extends Controller
 
     protected $ignore_statues = array(
         //'Waiting for acceptance',
-        'Waiting final acceptance',
-        'Closed',
-        'Fixed - waiting to be deployed',
+        //'Waiting final acceptance',
+        //'Closed',
+        //'Fixed - waiting to be deployed',
+    );
+     protected $ignore_statues_class = array(
+        'Waiting for acceptance' => 'status_waiting_for_acceptance',
+        'Waiting final acceptance' => 'status_final_acceptance',
+        'Closed' => 'status_closed',
+        'Fixed - waiting to be deployed' => 'status_fixed_waiting_to_be_deployd',
+        'Feedback' => 'status_feedback',
+        'New' => 'status_new',
+        'Waiting Customer Response' => 'status_waiting_customer_response',
+        'In progress' => 'status_in_progress',
     );
     /**
      * The index action.
@@ -50,6 +60,9 @@ class Controller_Welcome extends Controller
                 $count = count($item);
                 foreach ($item as $issue)
                 {
+                
+                		$issue["class"] = Issues::clean_status($issue["status"]["name"]);
+                		
 						if($issue['done_ratio'] > 0)
 							$issue["updated_on"] = date("Y-m-d H:i", strtotime($issue["updated_on"] ));
 						else
@@ -80,8 +93,10 @@ class Controller_Welcome extends Controller
 							if($issue['due_date'] < date("Y/m/d", strtotime(date("Y/m/d")))){
 								$issue["due"] = "overdue";
 							}
-
+							$issue['due_date'] = date("Y-m-d", strtotime($issue['due_date']));
 						}
+						
+						
 
 	                    if (!array_key_exists('estimated_hours', $issue))
 	                        $issue['estimated_hours'] = 0;

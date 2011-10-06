@@ -8,6 +8,7 @@ class Issues
     protected $versions;
     protected $version;
     protected $pattern = "Y v.W";
+    protected $statuses = array();
 
     function __construct($version)
     {
@@ -16,8 +17,26 @@ class Issues
         if (!$this->version) $this->load_latest_version();
         $this->load_issues();
         $this->load_current_target_version();
+        $this->build_statuses();
 
     }
+
+	static public function clean_status($string){
+		return "status_".str_replace(" ", "_", strtolower($string));
+	}
+
+	function build_statuses(){
+		foreach ($this->data["issues"] as $key => $issue) {
+			$string = self::clean_status($issue["status"]["name"]);
+			$this->statuses[$string] = $issue["status"]["name"];
+		}
+		
+
+	}
+
+	function get_statuses(){
+		return $this->statuses;
+	}
 
     function load_latest_version()
     {

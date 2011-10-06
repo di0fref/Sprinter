@@ -2,13 +2,20 @@ $(function() {
 
 	$("#status_accept_check").click(function(){
 		if($(this).attr("checked")){
-			$(".status_accept").show();
+			$(".status_waiting_for_acceptance").show();
 		}
 		else{
-			$(".status_accept").hide();
+			$(".status_waiting_for_acceptance").hide();
 		}
 	});
-
+	$("#status_closed_check").click(function(){
+		if($(this).attr("checked")){
+			$(".status_closed").show();
+		}
+		else{
+			$(".status_closed").hide();
+		}
+	});
        $('.description').toggle();
        
        $('#hide').click(function() {
