@@ -82,8 +82,7 @@ class Controller_Welcome extends Controller
 
 						$issue['due'] = "no_due";
 					
-						if (isset($issue['due_date'])){
-
+						if (isset($issue['due_date']) and $issue["status"]["name"] != "Closed"){
 							if($issue['due_date'] == date("Y/m/d")){
 								$issue["due"] = "due_today";
 							}
