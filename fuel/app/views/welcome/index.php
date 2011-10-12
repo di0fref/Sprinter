@@ -57,6 +57,9 @@
 			<tr>
 				<td colspan="3" align="right" valign="top">Show Closed: <input type="checkbox" id="status_closed_check" name="status_closed" /></td>
 			</tr>
+			<tr>
+				<td colspan="3" align="right" valign="top">Show Waiting to be deployed: <input type="checkbox" id="status_deploy_check" name="status_deploy" /></td>
+			</tr>
 
 			
 		</table>
@@ -93,7 +96,7 @@
 				</table>
 				
 			<!--<?php echo $issue['done_ratio'] ?></td>-->
-			<td nowrap><?php echo $issue['updated_on']?></td>
+			<td valign='top' nowrap><?php echo $issue['updated_on']?></td>
             <td valign='top' nowrap><?php echo $issue['status']['name'] ?></td>
         </tr>
         <?php endforeach ?>

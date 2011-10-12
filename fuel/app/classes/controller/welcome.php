@@ -77,7 +77,8 @@ class Controller_Welcome extends Controller
 	                    if (empty($issue['description'])) {
 	                        $issue['description'] = '';
 	                    } else {
-	                        $issue['description'] = str_replace("\n", '<br />', $issue['description']);
+	                    	$issue['description'] = $this->filterHTML($issue['description']);
+	                        //$issue['description'] = str_replace("\n", '<br />', $issue['description']);
 	                    }
 
 						$issue['due'] = "no_due";
@@ -122,6 +123,11 @@ class Controller_Welcome extends Controller
 
         $this->response->body = View::factory('welcome/index', $data);
     }
+
+	function filterHTML($text){
+		$text = str_replace("\n", '<br />', $text);
+		return $text;
+	}
 
     function setCookie($value)
     {

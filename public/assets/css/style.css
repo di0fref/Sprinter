@@ -169,6 +169,6 @@ font-size:10px;
 	font-size: 12px;
 }
 
-.status_waiting_for_acceptance, .status_closed{
+.status_waiting_for_acceptance, .status_closed, .status_fixed_-_waiting_to_be_deployed{
 	display: none;
 }
