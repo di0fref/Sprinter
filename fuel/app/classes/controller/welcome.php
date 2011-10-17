@@ -78,7 +78,6 @@ class Controller_Welcome extends Controller
 	                        $issue['description'] = '';
 	                    } else {
 	                    	$issue['description'] = $this->filterHTML($issue['description']);
-	                        //$issue['description'] = str_replace("\n", '<br />', $issue['description']);
 	                    }
 
 						$issue['due'] = "no_due";
@@ -124,8 +123,15 @@ class Controller_Welcome extends Controller
         $this->response->body = View::factory('welcome/index', $data);
     }
 
+
+	function callback($matches){
+		return "<a target=_blank href='https://redmine.redpill-linpro.com/issues/{$matches[2]}'>{$matches[0]}</a>";
+	}
 	function filterHTML($text){
-		$text = str_replace("\n", '<br />', $text);
+	
+		$pattern = "/(\#)([0-9]+)/";
+		$text = preg_replace_callback($pattern, array(&$this, "callback"), $text);
+		$text = str_replace("\n", '<br>', $text);
 		return $text;
 	}
 

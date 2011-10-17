@@ -83,7 +83,7 @@
 
         <tr class='<?php echo $issue["due"] . " ". $issue['class'];?> row' id="<?php echo $issue['id'] ?>">
             <td class='id' valign="top"> <a target='_blank' href="https://redmine.redpill-linpro.com/issues/<?php echo $issue['id'] ?>"><?php echo $issue['id'] ?></a></td>
-            <td valign='top'><span class="subject"><?php echo $issue['subject'] ?></span> <p class="hidden" id='<?php echo "hidden_".$issue["id"];?>'><?php echo "Author: ".$issue["author"]["name"]?><br><br><?php echo html_entity_decode($issue["description"])?></p></td>
+            <td valign='top'><span class="subject"><?php echo $issue['subject'] ?></span> <div class="hidden" id='<?php echo "hidden_".$issue["id"];?>'><?php echo "Author: ".$issue["author"]["name"]?><br><br><?php echo html_entity_decode($issue["description"])?></div></td>
             <td valign='top' nowrap><?php echo $issue['assigned_to'] ?></td>
             <td valign='top'><?php if(isset($issue["due_date"]))echo $issue["due_date"];?></td>
 			<td valign='top'><?php echo $issue['estimated_hours'] ?></td>

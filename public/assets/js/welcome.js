@@ -29,7 +29,7 @@ $(function() {
 	
 	
 	
-   $('.description').toggle();
+   //$('.description').hide();
    
    $('#hide').click(function() {
        $('.description').slideToggle();
